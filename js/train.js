@@ -286,42 +286,60 @@ function tchou() {
         if (button.disabled === true) {
           console.log(button.id);
 
-          switch (button.id) {
-            case "bouton_foret":
-              plateau.cases[mouseX][mouseY] = Type_de_case.Foret;
-              break;
-            case "bouton_eau":
-              plateau.cases[mouseX][mouseY] = Type_de_case.Eau;
-              break;
+          if (
+            (button.id.includes("rail") &&
+              plateau.cases[mouseX][mouseY] === Type_de_case.Rail_horizontal) ||
+            plateau.cases[mouseX][mouseY] === Type_de_case.Rail_vertical ||
+            plateau.cases[mouseX][mouseY] ===
+              Type_de_case.Rail_droite_vers_haut ||
+            plateau.cases[mouseX][mouseY] ===
+              Type_de_case.Rail_haut_vers_droite ||
+            plateau.cases[mouseX][mouseY] ===
+              Type_de_case.Rail_droite_vers_bas ||
+            plateau.cases[mouseX][mouseY] === Type_de_case.Rail_bas_vers_droite
+          ) {
+            // Si la case est déjà occupée par un rail, ne rien faire
+            alert("il y a déja un rail ici");
+          } else {
+            switch (button.id) {
+              case "bouton_foret":
+                plateau.cases[mouseX][mouseY] = Type_de_case.Foret;
+                break;
+              case "bouton_eau":
+                plateau.cases[mouseX][mouseY] = Type_de_case.Eau;
+                break;
 
-            case "bouton_rail_horizontal":
-              plateau.cases[mouseX][mouseY] = Type_de_case.Rail_horizontal;
-              break;
+              case "bouton_rail_horizontal":
+                plateau.cases[mouseX][mouseY] = Type_de_case.Rail_horizontal;
+                break;
 
-            case "bouton_rail_vertical":
-              plateau.cases[mouseX][mouseY] = Type_de_case.Rail_vertical;
-              break;
+              case "bouton_rail_vertical":
+                plateau.cases[mouseX][mouseY] = Type_de_case.Rail_vertical;
+                break;
 
-            case "bouton_rail_droite_vers_haut":
-              plateau.cases[mouseX][mouseY] =
-                Type_de_case.Rail_droite_vers_haut;
-              break;
+              case "bouton_rail_droite_vers_haut":
+                plateau.cases[mouseX][mouseY] =
+                  Type_de_case.Rail_droite_vers_haut;
+                break;
 
-            case "bouton_rail_haut_vers_droite":
-              plateau.cases[mouseX][mouseY] =
-                Type_de_case.Rail_haut_vers_droite;
-              break;
+              case "bouton_rail_haut_vers_droite":
+                plateau.cases[mouseX][mouseY] =
+                  Type_de_case.Rail_haut_vers_droite;
+                break;
 
-            case "bouton_rail_droite_vers_bas":
-              plateau.cases[mouseX][mouseY] = Type_de_case.Rail_droite_vers_bas;
-              break;
+              case "bouton_rail_droite_vers_bas":
+                plateau.cases[mouseX][mouseY] =
+                  Type_de_case.Rail_droite_vers_bas;
+                break;
 
-            case "bouton_rail_bas_vers_droite":
-              plateau.cases[mouseX][mouseY] = Type_de_case.Rail_bas_vers_droite;
-              break;
+              case "bouton_rail_bas_vers_droite":
+                plateau.cases[mouseX][mouseY] =
+                  Type_de_case.Rail_bas_vers_droite;
+                break;
 
-            default:
-              console.log("ID de bouton inconnu : " + button.id);
+              default:
+                console.log("ID de bouton inconnu : " + button.id);
+            }
           }
         }
       });
