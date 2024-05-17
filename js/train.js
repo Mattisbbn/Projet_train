@@ -29,6 +29,7 @@ class Type_de_case {
     static Rail_droite_vers_bas = new Type_de_case("rail droite vers bas");
     static Rail_bas_vers_droite = new Type_de_case("rail bas vers droite");
     static Loco = new Type_de_case("locomotive");
+    static Wagon = new Type_de_case("wagon");
 
     constructor(nom) {
         this.nom = nom;
@@ -133,6 +134,8 @@ function image_of_case(type_de_case) {
             return GRAY;
         case Type_de_case.Loco:
             return IMAGE_LOCO;
+            case Type_de_case.Wagon:
+            return IMAGE_WAGON;
     }
 }
 
@@ -355,8 +358,21 @@ function tchou() {
                                         console.log("Ce n'est pas un rail horizontal")
                                     break;
                                 }
+                                break;
+                                case "bouton_train_2":
+                                    switch (plateau.cases[mouseX][mouseY]  ,plateau.cases[mouseX+1][mouseY]) {
+                                        case Type_de_case.Rail_horizontal:
+                                            plateau.cases[mouseX][mouseY] = Type_de_case.Loco;
+                                            plateau.cases[mouseX+1][mouseY] = Type_de_case.Wagon;
+                                            dessine_case(contexte, plateau, mouseX +1, mouseY);
+                                        break;
+    
+                                        default:
+                                            console.log("Ce n'est pas un rail horizontal")
+                                        break;
+                                    }
                                 
-
+                                 
                                 break;
                         default:
                             console.log("ID de bouton inconnu : " + button.id);
