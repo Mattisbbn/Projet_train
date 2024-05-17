@@ -345,7 +345,18 @@ function tchou() {
                             plateau.cases[mouseX][mouseY] = Type_de_case.Rail_bas_vers_droite;
                             break;
                             case "bouton_train_1":
-                                plateau.cases[mouseX][mouseY] = Type_de_case.Loco; // Correction ici
+
+                                switch (plateau.cases[mouseX][mouseY]) {
+                                    case Type_de_case.Rail_horizontal:
+                                        plateau.cases[mouseX][mouseY] = Type_de_case.Loco;
+                                    break;
+
+                                    default:
+                                        console.log("Ce n'est pas un rail horizontal")
+                                    break;
+                                }
+                                
+
                                 break;
                         default:
                             console.log("ID de bouton inconnu : " + button.id);
