@@ -28,6 +28,7 @@ class Type_de_case {
     static Rail_haut_vers_droite = new Type_de_case("rail haut vers droite");
     static Rail_droite_vers_bas = new Type_de_case("rail droite vers bas");
     static Rail_bas_vers_droite = new Type_de_case("rail bas vers droite");
+    static Loco = new Type_de_case("locomotive");
 
     constructor(nom) {
         this.nom = nom;
@@ -69,6 +70,10 @@ IMAGE_WAGON.src = "images/wagon.png";
 
 const GRAY = new Image();
 GRAY.src = "images/gray.png";
+
+
+
+
 
 /************************************************************/
 // Variables globales
@@ -126,6 +131,8 @@ function image_of_case(type_de_case) {
             return IMAGE_RAIL_BAS_VERS_DROITE;
         case Type_de_case.gray:
             return GRAY;
+        case Type_de_case.Loco:
+            return IMAGE_LOCO;
     }
 }
 
@@ -274,6 +281,7 @@ function tchou() {
 
     // Sélection de la balise #simulateur
     const simulateur = document.querySelector("#simulateur");
+    simulateur.style.background = "gray";
 
     // Ajout d'un auditeur d'événements pour suivre le mouvement de la souris
     simulateur.addEventListener("click", function (event) {
@@ -336,7 +344,9 @@ function tchou() {
                             dessine_case(contexte, plateau, mouseX, mouseY);
                             plateau.cases[mouseX][mouseY] = Type_de_case.Rail_bas_vers_droite;
                             break;
-
+                            case "bouton_train_1":
+                                plateau.cases[mouseX][mouseY] = Type_de_case.Loco; // Correction ici
+                                break;
                         default:
                             console.log("ID de bouton inconnu : " + button.id);
                     
